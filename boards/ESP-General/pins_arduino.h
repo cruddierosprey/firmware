@@ -35,9 +35,9 @@ static const uint8_t SCL = 9;
 #define TFT_I2C_READ 400000
 #define TFT_SDA 8
 #define TFT_SCL 9
-// Keep the address as a C++ constant instead of a macro because the current
+// Keep the address as a C/C++ constant instead of a macro because the current
 // Lovyan I2C HAL guard is inverted; this preserves the upstream HAL unchanged.
-static constexpr uint8_t TFT_ADDR = 0x3C;
+static const uint8_t TFT_ADDR = 0x3C;
 #define TFT_CS -1
 #define TFT_RST -1
 #define TFT_BUSY_PIN -1
