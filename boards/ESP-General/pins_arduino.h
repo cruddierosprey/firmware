@@ -25,6 +25,31 @@ static const uint8_t RX = 44;
 static const uint8_t SDA = 8;
 static const uint8_t SCL = 9;
 
+// SSD1306 128x64 I2C display (0x3C) on the ESP32-S3 DevKitC-1.
+#define USE_LOVYANGFX 1
+#define LOVYAN_PANEL Panel_SSD1306
+#define LOVYAN_BUS Bus_I2C
+#define LOVYAN_I2C_BUS 1
+#define TFT_I2C_PORT 0
+#define TFT_I2C_WRITE 400000
+#define TFT_I2C_READ 400000
+#define TFT_SDA 8
+#define TFT_SCL 9
+// Keep the address as a C++ constant instead of a macro because the current
+// Lovyan I2C HAL guard is inverted; this preserves the upstream HAL unchanged.
+static constexpr uint8_t TFT_ADDR = 0x3C;
+#define TFT_CS -1
+#define TFT_RST -1
+#define TFT_BUSY_PIN -1
+#define TFT_WIDTH 128
+#define TFT_HEIGHT 64
+#define TFT_OFFSET_X 0
+#define TFT_OFFSET_Y 0
+#define TFT_INVERTION 0
+#define TFT_RGB_ORDER 0
+#define TFT_MEM_WIDTH 128
+#define TFT_MEM_HEIGHT 64
+
 static const uint8_t SS = 10;
 static const uint8_t MOSI = 11;
 static const uint8_t MISO = 13;
