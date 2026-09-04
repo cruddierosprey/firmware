@@ -66,4 +66,33 @@ static const uint8_t T12 = 12;
 static const uint8_t T13 = 13;
 static const uint8_t T14 = 14;
 
+// -----------------------------------------------------------------------------
+// Bruce 1.16.1 custom display profile
+// ESP32-S3-DevKitC-1 N16R8 + SSD1306 128x64 I2C
+// Known-working wiring from the OLED test: SDA=GPIO8, SCL=GPIO9, address=0x3C.
+// -----------------------------------------------------------------------------
+#define HAS_SCREEN 1
+#define USE_LOVYANGFX 1
+#define LOVYAN_PANEL Panel_SSD1306
+#define LOVYAN_BUS Bus_I2C
+#define LOVYAN_I2C_BUS 1
+
+#define TFT_I2C_PORT 0
+#define TFT_I2C_WRITE 400000
+#define TFT_I2C_READ 400000
+#define TFT_SDA 8
+#define TFT_SCL 9
+#define TFT_ADDR 0x3C
+
+// TFT_CS and TFT_RST are supplied as -1 by ESP-General.ini.
+#define TFT_BUSY_PIN -1
+#define TFT_WIDTH 128
+#define TFT_HEIGHT 64
+#define TFT_OFFSET_X 0
+#define TFT_OFFSET_Y 0
+#define TFT_INVERTION 0
+#define TFT_RGB_ORDER 0
+#define TFT_MEM_WIDTH 128
+#define TFT_MEM_HEIGHT 64
+
 #endif /* Pins_Arduino_h */
