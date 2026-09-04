@@ -4,9 +4,6 @@
 #include <stdint.h>
 #include "soc/soc_caps.h"
 
-#define USB_VID 0x303a
-#define USB_PID 0x1001
-
 // Some boards have too low voltage on this pin (board design bug)
 // Use different pin with 3V and connect with 48
 // and change this setup for the chosen pin (for example 38)
@@ -90,7 +87,8 @@ static const uint8_t T14 = 14;
 #define TFT_HEIGHT 64
 #define TFT_OFFSET_X 0
 #define TFT_OFFSET_Y 0
-#define TFT_INVERTION 0
+// Invert the SSD1306 panel output: OLED background stays off/black and Bruce UI text/icons light up.
+#define TFT_INVERTION 1
 #define TFT_RGB_ORDER 0
 #define TFT_MEM_WIDTH 128
 #define TFT_MEM_HEIGHT 64
