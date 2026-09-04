@@ -1,0 +1,48 @@
+name: Temporary SSD1306 firmware build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/build_ssd1306.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout custom SSD1306 branch
+        uses: actions/checkout@v4
+        with:
+          ref: build/ssd1306-1.16.1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends gcc-multilib libc6-dev-i386
+          pip install platformio requests esptool intelhex
+
+      - name: Stamp custom version
+        run: |
+          version="1.16.1-ssd1306"
+          sed -i "s/-DBRUCE_VERSION=/-DBRUCE_VERSION='\"$version\"' ; /g" ./platformio.ini
+
+      - name: Compile
+        run: platformio run -e esp32-s3-devkitc-1-psram
+
+      - name: List generated binaries
+        run: find . -maxdepth 4 -type f -name '*.bin' -print
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Bruce-1.16.1-ESP32S3-N16R8-SSD1306
+          path: Bruce-*.bin
+          retention-days: 5
+          if-no-files-found: error
