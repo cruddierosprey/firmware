@@ -30,7 +30,7 @@ jobs:
 
       - name: Stamp custom version
         run: |
-          version="1.16.1-ssd1306"
+          version="1.16.1-ssd1306-mono-v2"
           sed -i "s/-DBRUCE_VERSION=/-DBRUCE_VERSION='\"$version\"' ; /g" ./platformio.ini
 
       - name: Compile
@@ -42,7 +42,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Bruce-1.16.1-ESP32S3-N16R8-SSD1306
+          name: Bruce-1.16.1-ESP32S3-N16R8-SSD1306-MONO-v2
           path: Bruce-*.bin
           retention-days: 5
           if-no-files-found: error
